@@ -5,11 +5,11 @@ require "priority_test/version"
 Gem::Specification.new do |s|
   s.name        = "priority_test"
   s.version     = PriorityTest::VERSION
-  s.authors     = ["Jingwen Owen Ou"]
+  s.authors     = ["Owen Ou"]
   s.email       = ["jingweno@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Run tests in priority}
+  s.description = %q{Run tests in priority}
 
   s.rubyforge_project = "priority_test"
 
