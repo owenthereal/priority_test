@@ -15,7 +15,7 @@ def name
 end
 
 def version
-  line = File.read("lib/#{name}/version.rb")[/^\s*VERSION\s*=\s*.*/]
+  line = File.read("lib/#{name}.rb")[/^\s*VERSION\s*=\s*.*/]
   line.match(/.*VERSION\s*=\s*['"](.*)['"]/)[1]
 end
 
@@ -41,21 +41,18 @@ end
 #
 #############################################################################
 
-task :default => :test
+task :default => :spec
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = "./spec/**/*_spec.rb"
 end
 
 desc "Generate RCov test coverage and open in your browser"
-task :coverage do
-  require 'rcov'
-  sh "rm -fr coverage"
-  sh "rcov test/test_*.rb"
-  sh "open coverage/index.html"
+RSpec::Core::RakeTask.new(:rcov) do |t|
+  t.rcov = true
+  t.pattern = "./spec/**/*_spec.rb"
+  t.rcov_opts = '--exclude /gems/,/Library/,/usr/,lib/tasks,.bundle,config,/lib/rspec/,/lib/rspec-,spec'
 end
 
 require 'rdoc/task'
