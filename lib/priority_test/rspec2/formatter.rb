@@ -13,7 +13,6 @@ module PriorityTest
       end
 
       def example_failed(example)
-
         @test_result.test_failed(to_test(example))
       end
 

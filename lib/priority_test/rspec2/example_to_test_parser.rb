@@ -1,3 +1,5 @@
+require 'rspec/core/formatters/base_formatter'
+
 module PriorityTest
   module RSpec2
     class ExampleToTestParser
