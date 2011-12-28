@@ -16,6 +16,10 @@ module PriorityTest
         @test_result.test_failed(to_test(example))
       end
 
+      def close
+        @test_result.finish
+      end
+
       private
 
       def to_test(example)

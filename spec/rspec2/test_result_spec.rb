@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe PriorityTest::TestResult do
+describe PriorityTest::Core::TestResult do
   it "capures passed test result" do
-    test_result = PriorityTest::TestResult.new
+    test_result = PriorityTest::Core::TestResult.new
     formatter = PriorityTest::RSpec2::Formatter.new(test_result)
     SpecFactory.passing_spec.run(RSpec::Core::Reporter.new(formatter))
 
@@ -17,7 +17,7 @@ describe PriorityTest::TestResult do
   end
 
   it "capures failed test result" do
-    test_result = PriorityTest::TestResult.new
+    test_result = PriorityTest::Core::TestResult.new
     formatter = PriorityTest::RSpec2::Formatter.new(test_result)
     SpecFactory.failing_spec.run(RSpec::Core::Reporter.new(formatter))
 

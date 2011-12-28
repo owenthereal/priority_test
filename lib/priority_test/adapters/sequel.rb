@@ -3,12 +3,12 @@ require 'sequel'
 module PriorityTest
   module Adapters
     class Sequel
-      def initialize(db)
-        @db = db
+      def initialize(connection)
+        @connection = connection
       end
 
       def setup
-        @db.create_table :tests do
+        @connection.create_table? :tests do
           primary_key :id
           String :identifier
           String :file_path
@@ -18,12 +18,16 @@ module PriorityTest
         end
       end
 
+      def teardown
+        @connection.disconnect
+      end
+
       def bulk_create(tests)
         dataset.multi_insert(tests.collect(&:to_hash))
       end
 
       def dataset
-        @db[:tests]
+        @connection[:tests]
       end
     end
   end

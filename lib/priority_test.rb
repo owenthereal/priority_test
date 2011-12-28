@@ -1,9 +1,33 @@
-require 'priority_test/version'
+if defined?(require_relative)
+  def require_path(path)
+    require_relative "priority_test/#{path}"
+  end
+else
+  def require_path(path)
+    require "priority_test/#{path}"
+  end
+end
 
-require 'priority_test/test'
-require 'priority_test/test_result'
 
-require 'priority_test/rspec2/example_to_test_parser'
-require 'priority_test/rspec2/formatter'
+require_path 'core/test'
+require_path 'core/test_result'
+require_path 'core/service'
 
-require 'priority_test/adapters/sequel'
+require_path 'adapters'
+
+require_path 'version'
+
+module PriorityTest
+  autoload :RSpec2, 'priority_test/rspec2'
+
+  def self.start
+    if defined?(RSpec)
+      PriorityTest::RSpec2.setup
+    end
+  end
+
+  class << self
+    attr_accessor :env
+  end
+  self.env = ""
+end

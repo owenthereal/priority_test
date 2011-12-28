@@ -65,7 +65,7 @@ end
 
 desc "Open an irb session preloaded with this library"
 task :console do
-  sh "irb -rubygems -r ./lib/#{name}.rb"
+  sh "irb -rubygems -r ./lib/#{name}.rb -I ./lib"
 end
 
 #############################################################################
