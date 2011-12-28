@@ -9,6 +9,7 @@ else
 end
 
 
+require_path 'core'
 require_path 'core/test'
 require_path 'core/test_result'
 require_path 'core/service'

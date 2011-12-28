@@ -6,7 +6,7 @@ module PriorityTest
     autoload :Formatter, 'priority_test/rspec2/formatter'
 
     def self.setup
-      RSpec.configure do |config|
+      ::RSpec.configure do |config|
         config.formatters << formatter
       end
     end

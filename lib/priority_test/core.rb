@@ -1,15 +1,15 @@
 module PriorityTest
+  module Core ; end
+
   def self.test_result
-    @test_result ||= TestResult.new
+    @test_result ||= Core::TestResult.new
   end
 
   def self.service
-    @service ||= Service.new(adapter)
+    @service ||= Core::Service.new(adapter)
   end
 
   def self.adapter
     @adapter ||= Adapters::Sequel.new(Adapters::Connection.create)
   end
-
-  module Core ; end
 end

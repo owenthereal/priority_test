@@ -21,7 +21,7 @@ module PriorityTest
       end
 
       def finish
-        PriorityTest.service.save(@test_result)
+        PriorityTest.service.save(self)
       end
     end
   end

@@ -21,7 +21,10 @@ module PriorityTest
       private
 
       def relative_path(line)
-        RSpec::Core::Formatters::BaseFormatter::relative_path(line)
+        line = line.sub(File.expand_path("."), ".")
+        line = line.sub(/\A([^:]+:\d+)$/, '\\1')
+        return nil if line == '-e:1'
+        line
       end
     end
   end

@@ -3,6 +3,7 @@ module PriorityTest
     class Service
       def initialize(adapter)
         @adapter = adapter
+        @adapter.setup
       end
 
       def save(test_result)
