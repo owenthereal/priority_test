@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 $:.unshift File.expand_path('../lib', __FILE__)
-require 'priority_test'
+require 'priority_test/version'
 
 Gem::Specification.new do |s|
   s.name        = "priority_test"
@@ -20,4 +20,5 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_runtime_dependency "rspec"
+  s.add_runtime_dependency "sequel"
 end

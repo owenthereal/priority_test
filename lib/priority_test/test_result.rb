@@ -14,5 +14,9 @@ module PriorityTest
     def test_failed(test)
       failed_tests << test
     end
+
+    def tests
+      passed_tests + failed_tests
+    end
   end
 end

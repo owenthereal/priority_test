@@ -9,5 +9,15 @@ module PriorityTest
       @started_at = attributes.delete(:started_at)
       @run_time = attributes.delete(:run_time)
     end
+
+    def to_hash
+      {
+        :identifier => identifier,
+        :file_path => file_path,
+        :status => status,
+        :started_at => started_at,
+        :run_time => run_time
+      }
+    end
   end
 end
