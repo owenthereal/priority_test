@@ -6,10 +6,10 @@ module PriorityTest
   end
 
   def self.service
-    @service ||= Core::Service.new(adapter)
+    @service ||= Core::Service.new(gateway)
   end
 
-  def self.adapter
-    @adapter ||= Adapters::Sequel.new(Adapters::Connection.create)
+  def self.gateway
+    @gateway ||= Gateways::Sequel.new(Gateways::Connection.create)
   end
 end

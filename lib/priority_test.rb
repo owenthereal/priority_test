@@ -14,7 +14,7 @@ require_path 'core/test'
 require_path 'core/test_result'
 require_path 'core/service'
 
-require_path 'adapters'
+require_path 'gateways'
 
 require_path 'version'
 

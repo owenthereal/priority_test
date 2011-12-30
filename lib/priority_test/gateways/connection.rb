@@ -1,7 +1,7 @@
 require 'sequel'
 
 module PriorityTest
-  module Adapters
+  module Gateways
     class Connection
       def self.create
         if PriorityTest.env =~ /test/i

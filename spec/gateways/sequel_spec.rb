@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-module PriorityTest::Adapters
+module PriorityTest::Gateways
   describe Sequel do
     before :all do
-      @adapter = Sequel.new(Connection.create)
-      @adapter.setup
+      @gateway = Sequel.new(Connection.create)
+      @gateway.setup
     end
 
-    subject { @adapter }
+    subject { @gateway }
 
     it "bulk create tests" do
       tests = [

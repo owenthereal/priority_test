@@ -1,13 +1,13 @@
 module PriorityTest
   module Core
     class Service
-      def initialize(adapter)
-        @adapter = adapter
-        @adapter.setup
+      def initialize(gateway)
+        @gateway = gateway
+        @gateway.setup
       end
 
       def save(test_result)
-        @adapter.bulk_create(test_result.tests)
+        @gateway.bulk_create(test_result.tests)
       end
     end
   end

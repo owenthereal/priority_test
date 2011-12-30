@@ -1,7 +1,7 @@
 require 'sequel'
 
 module PriorityTest
-  module Adapters
+  module Gateways
     class Sequel
       def initialize(connection)
         @connection = connection
