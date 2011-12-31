@@ -27,7 +27,8 @@ describe PriorityTest::RSpec2::Formatter do
     ]
 
     test_result = PriorityTest::Core::TestResult.new
-    formatter = PriorityTest::RSpec2::Formatter.new(test_result)
+    test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
+    formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
 
     passed_examples.each {|e| formatter.example_passed(e) }
     failed_examples.each {|e| formatter.example_failed(e) }

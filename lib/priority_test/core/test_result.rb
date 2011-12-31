@@ -8,20 +8,16 @@ module PriorityTest
         @failed_tests = []
       end
 
-      def test_passed(test)
+      def add_passed_test(test)
         passed_tests << test
       end
 
-      def test_failed(test)
+      def add_failed_test(test)
         failed_tests << test
       end
 
       def tests
         passed_tests + failed_tests
-      end
-
-      def finish
-        PriorityTest.service.save(self)
       end
     end
   end

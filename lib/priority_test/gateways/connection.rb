@@ -2,7 +2,7 @@ require 'sequel'
 
 module PriorityTest
   module Gateways
-    class Connection
+    module Connection
       def self.create
         if PriorityTest.env =~ /test/i
           ::Sequel.sqlite

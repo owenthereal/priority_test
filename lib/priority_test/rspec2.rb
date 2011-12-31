@@ -12,7 +12,7 @@ module PriorityTest
     end
 
     def self.formatter
-      Formatter.new(PriorityTest.test_result)
+      Formatter.new(PriorityTest::Core::TestResultCollector.new)
     end
   end
 end
