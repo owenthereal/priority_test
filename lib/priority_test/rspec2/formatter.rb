@@ -23,7 +23,7 @@ module PriorityTest
       private
 
       def to_test(example)
-        ExampleToTestParser.new(example).to_test
+        ExampleToTestParser.parse(example)
       end
     end
   end

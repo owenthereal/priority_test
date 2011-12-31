@@ -5,7 +5,6 @@ module PriorityTest
 
       def initialize(test_result = TestResult.new)
         @test_result = test_result
-        @service = Service.new(PriorityTest.gateway)
       end
 
       def test_passed(test)
