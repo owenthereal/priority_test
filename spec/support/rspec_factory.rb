@@ -1,4 +1,4 @@
-class SpecFactory
+class RSpecFactory
   def self.passing_spec
     RSpec::Core::ExampleGroup.describe("passing spec") do
       it "passes" do

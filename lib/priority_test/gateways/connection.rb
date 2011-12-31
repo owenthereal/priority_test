@@ -7,7 +7,7 @@ module PriorityTest
         if PriorityTest.env =~ /test/i
           ::Sequel.sqlite
         else
-          ::Sequel.sqlite('./.priority_test.sqlite3')
+          ::Sequel.sqlite('./.priority_test')
         end
       end
     end

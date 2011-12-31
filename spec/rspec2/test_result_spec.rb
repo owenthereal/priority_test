@@ -5,7 +5,7 @@ describe PriorityTest::Core::TestResult do
     test_result = PriorityTest::Core::TestResult.new
     test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
-    SpecFactory.passing_spec.run(RSpec::Core::Reporter.new(formatter))
+    RSpecFactory.passing_spec.run(RSpec::Core::Reporter.new(formatter))
 
     test_result.passed_tests.size.should == 1
 
@@ -21,7 +21,7 @@ describe PriorityTest::Core::TestResult do
     test_result = PriorityTest::Core::TestResult.new
     test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
-    SpecFactory.failing_spec.run(RSpec::Core::Reporter.new(formatter))
+    RSpecFactory.failing_spec.run(RSpec::Core::Reporter.new(formatter))
 
     test_result.failed_tests.size.should == 1
 
