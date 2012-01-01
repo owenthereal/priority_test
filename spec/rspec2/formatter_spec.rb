@@ -26,26 +26,24 @@ describe PriorityTest::RSpec2::Formatter do
             )
     ]
 
-    test_result = PriorityTest::Core::TestSuiteResult.new
-    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
+    test_result_collector = PriorityTest::Core::TestResultCollector.new
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
 
     passed_examples.each {|e| formatter.example_passed(e) }
     failed_examples.each {|e| formatter.example_failed(e) }
 
-    test_result.passed_tests.size.should == 1
-    test_result.failed_tests.size.should == 2
+    test_result_collector.passed_tests.size.should == 1
+    test_result_collector.failed_tests.size.should == 2
   end
 
   it "capures passed test result" do
-    test_result = PriorityTest::Core::TestSuiteResult.new
-    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
+    test_result_collector = PriorityTest::Core::TestResultCollector.new
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
     RSpecFactory.passing_spec.run(RSpec::Core::Reporter.new(formatter))
 
-    test_result.passed_tests.size.should == 1
+    test_result_collector.passed_tests.size.should == 1
 
-    passed_test = test_result.passed_tests.first
+    passed_test = test_result_collector.passed_tests.first
     passed_test.identifier.should be
     passed_test.file_path.should be
     passed_test.status.should == 'passed'
@@ -54,14 +52,13 @@ describe PriorityTest::RSpec2::Formatter do
   end
 
   it "capures failed test result" do
-    test_result = PriorityTest::Core::TestSuiteResult.new
-    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
+    test_result_collector = PriorityTest::Core::TestResultCollector.new
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
     RSpecFactory.failing_spec.run(RSpec::Core::Reporter.new(formatter))
 
-    test_result.failed_tests.size.should == 1
+    test_result_collector.failed_tests.size.should == 1
 
-    failed_test = test_result.failed_tests.first
+    failed_test = test_result_collector.failed_tests.first
     failed_test.identifier.should be
     failed_test.file_path.should be
     failed_test.status.should == 'failed'

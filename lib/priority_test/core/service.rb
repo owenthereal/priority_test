@@ -5,8 +5,7 @@ module PriorityTest
         @gateway = gateway
       end
 
-      def save(test_suite_result)
-        test_results = test_suite_result.all
+      def save(test_results)
         @gateway.bulk_create_test_results(test_results)
       end
 

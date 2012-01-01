@@ -13,7 +13,7 @@ module PriorityTest
     end
 
     def self.formatter
-      Formatter.new(PriorityTest::Core::TestSuiteResultCollector.new)
+      Formatter.new(PriorityTest::Core::TestResultCollector.new)
     end
 
     def self.priority_set_filter

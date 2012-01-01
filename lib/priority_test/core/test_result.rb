@@ -11,6 +11,14 @@ module PriorityTest
         @run_time = attributes.delete(:run_time)
       end
 
+      def passed?
+        status == "passed"
+      end
+
+      def failed?
+        not passed?
+      end
+
       def to_hash
         {
           :identifier => identifier,
