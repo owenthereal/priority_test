@@ -8,7 +8,7 @@ module PriorityTest
       end
 
       def setup
-        @connection.create_table? :tests do
+        @connection.create_table? :test_results do
           primary_key :id
           String :identifier
           String :file_path
@@ -22,12 +22,12 @@ module PriorityTest
         @connection.disconnect
       end
 
-      def bulk_create(tests)
-        dataset.multi_insert(tests.collect(&:to_hash))
+      def bulk_create_test_results(test_results)
+        dataset.multi_insert(test_results.collect(&:to_hash))
       end
 
       def dataset
-        @connection[:tests]
+        @connection[:test_results]
       end
     end
   end

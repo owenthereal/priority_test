@@ -26,8 +26,8 @@ describe PriorityTest::RSpec2::Formatter do
             )
     ]
 
-    test_result = PriorityTest::Core::TestResult.new
-    test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
+    test_result = PriorityTest::Core::TestSuiteResult.new
+    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
 
     passed_examples.each {|e| formatter.example_passed(e) }
@@ -38,8 +38,8 @@ describe PriorityTest::RSpec2::Formatter do
   end
 
   it "capures passed test result" do
-    test_result = PriorityTest::Core::TestResult.new
-    test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
+    test_result = PriorityTest::Core::TestSuiteResult.new
+    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
     RSpecFactory.passing_spec.run(RSpec::Core::Reporter.new(formatter))
 
@@ -54,8 +54,8 @@ describe PriorityTest::RSpec2::Formatter do
   end
 
   it "capures failed test result" do
-    test_result = PriorityTest::Core::TestResult.new
-    test_result_collector = PriorityTest::Core::TestResultCollector.new(test_result)
+    test_result = PriorityTest::Core::TestSuiteResult.new
+    test_result_collector = PriorityTest::Core::TestSuiteResultCollector.new(test_result)
     formatter = PriorityTest::RSpec2::Formatter.new(test_result_collector)
     RSpecFactory.failing_spec.run(RSpec::Core::Reporter.new(formatter))
 

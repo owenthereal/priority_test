@@ -9,11 +9,11 @@ module PriorityTest
       end
 
       def example_passed(example)
-        @test_result_collector.test_passed(to_test(example))
+        @test_result_collector.test_passed(to_test_result(example))
       end
 
       def example_failed(example)
-        @test_result_collector.test_failed(to_test(example))
+        @test_result_collector.test_failed(to_test_result(example))
       end
 
       def close
@@ -22,8 +22,8 @@ module PriorityTest
 
       private
 
-      def to_test(example)
-        ExampleToTestParser.parse(example)
+      def to_test_result(example)
+        ExampleToTestResultParser.parse(example)
       end
     end
   end

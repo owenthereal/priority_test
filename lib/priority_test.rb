@@ -10,9 +10,9 @@ end
 
 
 require_path 'core'
-require_path 'core/test'
 require_path 'core/test_result'
-require_path 'core/test_result_collector'
+require_path 'core/test_suite_result'
+require_path 'core/test_suite_result_collector'
 require_path 'core/service'
 
 require_path 'gateways'

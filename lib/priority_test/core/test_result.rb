@@ -1,23 +1,24 @@
 module PriorityTest
   module Core
     class TestResult
-      attr_reader :passed_tests, :failed_tests
+      attr_accessor :identifier, :file_path, :status, :started_at, :run_time
 
-      def initialize
-        @passed_tests = []
-        @failed_tests = []
+      def initialize(attributes={})
+        @identifier = attributes.delete(:identifier)
+        @file_path = attributes.delete(:file_path)
+        @status = attributes.delete(:status)
+        @started_at = attributes.delete(:started_at)
+        @run_time = attributes.delete(:run_time)
       end
 
-      def add_passed_test(test)
-        passed_tests << test
-      end
-
-      def add_failed_test(test)
-        failed_tests << test
-      end
-
-      def tests
-        passed_tests + failed_tests
+      def to_hash
+        {
+          :identifier => identifier,
+          :file_path => file_path,
+          :status => status,
+          :started_at => started_at,
+          :run_time => run_time
+        }
       end
     end
   end

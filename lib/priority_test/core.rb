@@ -6,6 +6,14 @@ module PriorityTest
   end
 
   def self.gateway
-    @gateway ||= Gateways::Sequel.new(Gateways::Connection.create)
+    @gateway ||= begin
+                   gateway = Gateways::Sequel.new(gateway_connection)
+                   gateway.setup
+                   gateway
+                 end
+  end
+
+  def self.gateway_connection
+    @gateway_connection ||= Gateways::Connection.create
   end
 end
