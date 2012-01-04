@@ -9,11 +9,11 @@ module PriorityTest
       end
 
       def example_passed(example)
-        @test_result_collector.add(to_test_result(example))
+        @test_result_collector.add_result(to_test_result(example))
       end
 
       def example_failed(example)
-        @test_result_collector.add(to_test_result(example))
+        @test_result_collector.add_result(to_test_result(example))
       end
 
       def close

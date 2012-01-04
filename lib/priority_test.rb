@@ -8,27 +8,18 @@ else
   end
 end
 
-
 require_path 'core'
-require_path 'core/test_result'
-require_path 'core/test_result_collector'
-require_path 'core/service'
-
-require_path 'gateways'
-
+require_path 'gateway'
 require_path 'version'
 
 module PriorityTest
   autoload :RSpec2, 'priority_test/rspec2'
-
-  def self.start
-    if defined?(RSpec)
-      PriorityTest::RSpec2.setup
-    end
-  end
-
-  class << self
-    attr_accessor :env
-  end
-  self.env = ""
 end
+
+if PriorityTest.env =~ /test/i
+  PriorityTest.config[:database] = 'sqlite:/'
+else
+  PriorityTest.config[:database] = ENV['PRIORITY_TEST_DATABASE'] || 'sqlite://.priority-test'
+end
+
+PriorityTest::Gateway.setup

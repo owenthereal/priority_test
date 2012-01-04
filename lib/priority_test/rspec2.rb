@@ -8,7 +8,7 @@ module PriorityTest
     def self.setup
       ::RSpec.configure do |config|
         config.formatters << formatter
-        exclusion_filter = priority_set_filter
+        config.exclusion_filter = priority_set_filter
       end
     end
 
@@ -18,7 +18,7 @@ module PriorityTest
 
     def self.priority_set_filter
       lambda { |k, v|
-        PriorityTest::RSpec2.priority_set.has_indentifier?(v[:location])
+        PriorityTest.priority_set.has_indentifier?(v[:location])
       }
     end
   end

@@ -2,12 +2,12 @@ module PriorityTest
   module RSpec2
     module ExampleToTestResultParser
       def self.parse(example)
-        PriorityTest::Core::TestResult.new(:identifier => relative_path(example.location),
-                                           :file_path => relative_path(example.file_path),
-                                           :status => example.execution_result[:status],
-                                           :started_at => example.execution_result[:started_at],
-                                           :run_time => example.execution_result[:run_time]
-                                          )
+        { :identifier => relative_path(example.location),
+          :file_path => relative_path(example.file_path),
+          :status => example.execution_result[:status],
+          :started_at => example.execution_result[:started_at],
+          :run_time => example.execution_result[:run_time]
+        }
       end
 
       private

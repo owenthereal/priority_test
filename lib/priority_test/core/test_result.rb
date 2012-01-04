@@ -1,32 +1,26 @@
+require 'sequel'
+
 module PriorityTest
   module Core
-    class TestResult
-      attr_accessor :identifier, :file_path, :status, :started_at, :run_time
+    class TestResult < ::Sequel::Model
+      plugin :validation_helpers
 
-      def initialize(attributes={})
-        @identifier = attributes.delete(:identifier)
-        @file_path = attributes.delete(:file_path)
-        @status = attributes.delete(:status)
-        @started_at = attributes.delete(:started_at)
-        @run_time = attributes.delete(:run_time)
-      end
+      PASSED_STATUS = 'passed'
+      FAILEDED_STATUS = 'failed'
+
+      many_to_one :context, :class => PriorityTest::Core::Test.name, :key => :test_id
 
       def passed?
-        status == "passed"
+        status == PASSED_STATUS
       end
 
       def failed?
         not passed?
       end
 
-      def to_hash
-        {
-          :identifier => identifier,
-          :file_path => file_path,
-          :status => status,
-          :started_at => started_at,
-          :run_time => run_time
-        }
+      def validate
+        validates_presence [ :status, :started_at, :run_time ]
+        validates_includes [ PASSED_STATUS, FAILEDED_STATUS ], :status
       end
     end
   end

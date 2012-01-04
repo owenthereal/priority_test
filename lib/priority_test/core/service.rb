@@ -1,16 +1,12 @@
 module PriorityTest
   module Core
     class Service
-      def initialize(gateway)
-        @gateway = gateway
+      def save_all(all_tests)
+
       end
 
-      def save(test_results)
-        @gateway.bulk_create_test_results(test_results)
-      end
+      def load_all
 
-      def load_all_tests_in_priority_order
-        @gateway.dataset.group(:identifier).order(:status, :run_time).collect { |entry| TestResult.new(entry.to_hash) }
       end
     end
   end

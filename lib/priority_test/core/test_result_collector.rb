@@ -1,26 +1,38 @@
 module PriorityTest
   module Core
     class TestResultCollector
-      attr_reader :results
+      attr_reader :all_tests
 
-      def initialize
-        @results = []
+      def initialize(all_tests)
+        @all_tests = all_tests
       end
 
-      def add(test_result)
-        @results << test_result
-      end
+      def add_result(test_result_hash)
+        identifier = test_result_hash[:identifier]
 
-      def passed_tests
-        results.find_all { |result| result.passed? }
-      end
-
-      def failed_tests
-        results.find_all { |result| result.failed? }
+        @all_tests.get_test(identifier) || @all_tests.add_test(test_params(test_result_hash))
+        @all_tests.add_test_result(identifier, test_result_params(test_result_hash))
       end
 
       def finish
-        PriorityTest.service.save(@test_suite_result)
+        # nothing
+      end
+
+      private
+
+      def test_params(test_result_hash)
+        {
+          :identifier => test_result_hash[:identifier],
+          :file_path => test_result_hash[:file_path]
+        }
+      end
+
+      def test_result_params(test_result_hash)
+        {
+          :status => test_result_hash[:status],
+          :started_at => test_result_hash[:started_at],
+          :run_time => test_result_hash[:run_time]
+        }
       end
     end
   end
