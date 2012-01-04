@@ -74,6 +74,21 @@ module PriorityTest::Core
         end
       end
 
+      it "returns all tests ordered by avg_run_time" do
+        10.times.each do |i|
+          Test.create(:identifier => "id#{i}", :file_path => "path#{i}", :avg_run_time => i)
+        end
+
+        tests = Test.all_in_priority_order
+        tests.size.should == 10
+
+        (1..9).each do |i|
+          previous_test = tests[i-1]
+          current_test = tests[i]
+          previous_test.avg_run_time.should < current_test.avg_run_time
+        end
+      end
+
       it "eagerly loads recent results" do
         test = Test.create(:identifier => 'identifier1', :file_path => 'file_path1')
         3.times.each do |i|

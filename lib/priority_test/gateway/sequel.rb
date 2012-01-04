@@ -20,16 +20,17 @@ module PriorityTest
       def self.run_migration(database)
         database.create_table? :tests do
           primary_key :id
-          String :identifier
+          String :identifier, :null => false
           String :file_path
-          Integer :priority, :default => 1024
+          Integer :priority, :default => 0, :null => false
+          Numeric :avg_run_time, :default => 0, :null => false
         end
 
         database.create_table? :test_results do
           primary_key :id
-          String :status
-          DateTime :started_at
-          Numeric :run_time
+          String :status, :null => false
+          DateTime :started_at, :null => false
+          Numeric :run_time, :null => false
           foreign_key :test_id, :tests
           index :test_id
         end

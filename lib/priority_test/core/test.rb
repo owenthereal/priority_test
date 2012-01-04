@@ -7,6 +7,10 @@ module PriorityTest
         ds.order(:started_at.desc).limit(5) # make it configurable
       end
 
+      def self.all_in_priority_order
+        self.eager(:results).order(:priority, :avg_run_time).all
+      end
+
       def validate
         validates_presence [ :identifier, :file_path ]
       end
@@ -18,16 +22,22 @@ module PriorityTest
       end
 
       def update_statistics
+        stats_to_update = {}
         prio = Priority[results_key]
-        self.update(:priority => prio) if prio
+        stats_to_update.merge!(:priority => prio) if prio
+        stats_to_update.merge!(:avg_run_time => calculate_avg_run_time) if results.size > 0
+
+        self.update(stats_to_update)
       end
 
       def priority?
         self.priority <= Priority::PRIORITY_THRESHOLD
       end
 
-      def self.all_in_priority_order
-        self.eager(:results).order(:priority).all
+      private
+
+      def calculate_avg_run_time
+        results.collect(&:run_time).reduce(:+) / results.size
       end
     end
   end
