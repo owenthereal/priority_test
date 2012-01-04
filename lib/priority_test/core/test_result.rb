@@ -1,9 +1,7 @@
-require 'sequel'
-
 module PriorityTest
   module Core
     class TestResult < ::Sequel::Model
-      plugin :validation_helpers
+      include PriorityTest::Core::ValidationsHelper
 
       PASSED_STATUS = 'passed'
       FAILEDED_STATUS = 'failed'

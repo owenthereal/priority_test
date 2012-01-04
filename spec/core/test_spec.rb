@@ -26,10 +26,10 @@ module PriorityTest::Core
           test.add_result(:status => 'passed', :run_time => 1, :started_at => time)
         end
 
-        test.recent_results.size.should == 5
+        test.results.size.should == 5
         (1..4).each do |i|
-          previous_result = test.recent_results[i - 1]
-          current_result = test.recent_results[i]
+          previous_result = test.results[i - 1]
+          current_result = test.results[i]
           previous_result.started_at.should > current_result.started_at
         end
       end
@@ -44,7 +44,7 @@ module PriorityTest::Core
           test.add_result(:status => status, :run_time => 1, :started_at => time)
         end
 
-        test.recent_results_key.should == "PFPFP"
+        test.results_key.should == "PFPFP"
       end
 
       it "populates with P in the end if number of results is less than 5" do
@@ -54,7 +54,7 @@ module PriorityTest::Core
           test.add_result(:status => 'failed', :run_time => 1, :started_at => time)
         end
 
-        test.recent_results_key.should == "FFFPP"
+        test.results_key.should == "FFFPP"
       end
     end
 
@@ -83,7 +83,7 @@ module PriorityTest::Core
 
         tests = Test.all_in_priority_order
         tests.size.should == 1
-        tests.first.associations[:recent_results].should be_any
+        tests.first.associations[:results].should be_any
       end
     end
   end

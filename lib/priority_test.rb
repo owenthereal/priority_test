@@ -19,7 +19,7 @@ end
 if PriorityTest.env =~ /test/i
   PriorityTest.config[:database] = 'sqlite:/'
 else
-  PriorityTest.config[:database] = ENV['PRIORITY_TEST_DATABASE'] || 'sqlite://.priority-test'
+  PriorityTest.config[:database] = ENV['PRIORITY_TEST_DATABASE'] || 'sqlite://priority-test.db'
 end
 
 PriorityTest::Gateway.setup

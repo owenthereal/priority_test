@@ -1,27 +1,33 @@
 module PriorityTest
   module Core
     class Test < ::Sequel::Model
-      plugin :validation_helpers
+      include PriorityTest::Core::ValidationsHelper
 
-      one_to_many :results, :class => PriorityTest::Core::TestResult.name
-      one_to_many :recent_results, :class => PriorityTest::Core::TestResult.name, :order => :started_at.desc, :limit => 5 # make it configurable
+      one_to_many :results, :class => PriorityTest::Core::TestResult.name, :class => PriorityTest::Core::TestResult.name do |ds|
+        ds.order(:started_at.desc).limit(5) # make it configurable
+      end
 
       def validate
         validates_presence [ :identifier, :file_path ]
       end
 
-      def recent_results_key
-        recent_results_key = recent_results.collect { |r| r.passed? ? 'P' : 'F' }.join
-        recent_results_key << 'P' * (5 - recent_results_key.size) if recent_results_key.size < 5
-        recent_results_key
+      def results_key
+        results_key = results.collect { |r| r.passed? ? 'P' : 'F' }.join
+        results_key << 'P' * (5 - results_key.size) if results_key.size < 5
+        results_key[0..4]
       end
 
       def update_statistics
-        self.update(:priority => Priority[recent_results_key])
+        prio = Priority[results_key]
+        self.update(:priority => prio) if prio
+      end
+
+      def priority?
+        self.priority <= Priority::PRIORITY_THRESHOLD
       end
 
       def self.all_in_priority_order
-        self.eager(:recent_results).order(:priority).all
+        self.eager(:results).order(:priority).all
       end
     end
   end

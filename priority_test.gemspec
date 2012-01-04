@@ -20,6 +20,5 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_runtime_dependency "sequel"
-  s.add_runtime_dependency "virtus"
   s.add_development_dependency "rspec"
 end

@@ -48,6 +48,8 @@ module PriorityTest
       # ranking for the last 5 test results
       PRIORITY_RANKINGS = PRIORITY_SET_RANKINGS.merge(NON_PRIORITY_SET_RANKINGS)
 
+      PRIORITY_THRESHOLD = 24
+
       def self.[](key)
         PRIORITY_RANKINGS[key]
       end

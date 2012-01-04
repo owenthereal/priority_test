@@ -1,12 +1,13 @@
 module PriorityTest
   module Core
     class Service
-      def save_all(all_tests)
-
+      def initialize(all_tests)
+        @all_tests = all_tests
       end
 
-      def load_all
-
+      def priority_test?(identifier)
+        test = @all_tests.get_test(identifier)
+        test.nil? ? true : test.priority?
       end
     end
   end

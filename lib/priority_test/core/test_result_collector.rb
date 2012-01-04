@@ -9,6 +9,7 @@ module PriorityTest
 
       def add_result(test_result_hash)
         identifier = test_result_hash[:identifier]
+        return unless identifier
 
         @all_tests.get_test(identifier) || @all_tests.add_test(test_params(test_result_hash))
         @all_tests.add_test_result(identifier, test_result_params(test_result_hash))

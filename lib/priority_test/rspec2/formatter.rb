@@ -23,7 +23,12 @@ module PriorityTest
       private
 
       def to_test_result(example)
-        ExampleToTestResultParser.parse(example)
+        { :identifier => RelativePath.convert(example.location),
+          :file_path => RelativePath.convert(example.file_path),
+          :status => example.execution_result[:status],
+          :started_at => example.execution_result[:started_at],
+          :run_time => example.execution_result[:run_time]
+        }
       end
     end
   end
