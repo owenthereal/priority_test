@@ -1,7 +1,7 @@
 module PriorityTest
   module Runner
     def self.start
-      if defined?(RSpec)
+      if defined?(::RSpec)
         PriorityTest::RSpec2.setup
       end
     end
