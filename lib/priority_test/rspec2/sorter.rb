@@ -5,9 +5,6 @@ module PriorityTest
         test1 = PriorityTest.all_tests.get_test(relative_path(example1))
         test2 = PriorityTest.all_tests.get_test(relative_path(example2))
 
-        p test1
-        p test2
-
         if test1.nil? && !test2.nil?
           1
         elsif !test1.nil? && test2.nil?
