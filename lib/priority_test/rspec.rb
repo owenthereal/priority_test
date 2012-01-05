@@ -1,14 +1,9 @@
 require 'rspec/core'
-require 'priority_test/rspec2/patch/ordered'
+require_path 'rspec2'
 
-module PriorityTest
-  module Runner
-    def self.start
-      if defined?(::RSpec)
-        PriorityTest::RSpec2.setup
-      end
-    end
-  end
+RSpec.configure do |config|
+  config.formatters << PriorityTest::RSpec2.formatter
+  config.run_all_when_everything_filtered = true
+  config.inclusion_filter = { :priority_test => PriorityTest::RSpec2.filter }
+  config.extend PriorityTest::RSpec2::OrderedFilteredExamples
 end
-
-PriorityTest::Runner.start

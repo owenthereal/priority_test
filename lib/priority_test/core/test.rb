@@ -27,7 +27,7 @@ module PriorityTest
       def results_key
         results_key = results.collect { |r| r.passed? ? 'P' : 'F' }.join
         results_key << 'P' * (NUMBER_OF_RESULTS - results_key.size) if results_key.size < NUMBER_OF_RESULTS
-        results_key[0..4]
+        results_key[0..(NUMBER_OF_RESULTS-1)]
       end
 
       def update_statistics
@@ -40,7 +40,7 @@ module PriorityTest
       end
 
       def priority?
-        self.priority <= Priority::PRIORITY_THRESHOLD
+        Priority.in_priority_set?(priority)
       end
 
       private

@@ -4,7 +4,7 @@ describe PriorityTest::RSpec2::Formatter do
   it "adds to test result" do
     passed_examples = [
       double('passed example',
-             :location => "location1",
+             :full_description => "desc1",
              :file_path => "file_path",
              :description => "passed example",
              :execution_result => { :status => 'passed', :started_at => Time.now, :run_time => 1}
@@ -13,13 +13,13 @@ describe PriorityTest::RSpec2::Formatter do
 
     failed_examples = [
       double('failed spec 1',
-             :location => "location2",
+             :full_description => "desc2",
              :file_path => "file_path",
              :description => "first failed example",
              :execution_result => { :status => 'failed', :started_at => Time.now, :run_time => 1, :exception => Exception.new }
             ),
       double('failed spec 2',
-             :location => "location3",
+             :full_description => "desc3",
              :file_path => "file_path",
              :description => "second failed example",
              :execution_result => { :status => 'failed', :started_at => Time.now, :run_time => 1, :exception => Exception.new }

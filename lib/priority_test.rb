@@ -8,13 +8,16 @@ else
   end
 end
 
+module PriorityTest
+  class << self
+    attr_accessor :env
+  end
+  self.env = ENV['PRIORITY_TEST_ENV'] || 'production'
+end
+
 require_path 'core'
 require_path 'gateway'
 require_path 'version'
-
-module PriorityTest
-  autoload :RSpec2, 'priority_test/rspec2'
-end
 
 if PriorityTest.env =~ /test/i
   PriorityTest.config[:database] = 'sqlite:/'
@@ -23,3 +26,4 @@ else
 end
 
 PriorityTest::Gateway.setup
+

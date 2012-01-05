@@ -53,6 +53,10 @@ module PriorityTest
       def self.[](key)
         PRIORITY_RANKINGS[key]
       end
+
+      def self.in_priority_set?(priority)
+        priority <= PRIORITY_THRESHOLD
+      end
     end
   end
 end

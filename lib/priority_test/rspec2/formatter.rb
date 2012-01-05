@@ -23,7 +23,7 @@ module PriorityTest
       private
 
       def to_test_result(example)
-        { :identifier => RelativePath.convert(example.location),
+        { :identifier => example.full_description,
           :file_path => RelativePath.convert(example.file_path),
           :status => example.execution_result[:status],
           :started_at => example.execution_result[:started_at],
