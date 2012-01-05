@@ -4,6 +4,7 @@ require_path 'core/validations_helper'
 require_path 'core/all_tests'
 require_path 'core/service'
 require_path 'core/test_result_collector'
+require_path 'core/priority_sort_element'
 
 module PriorityTest
   module Core
