@@ -3,7 +3,6 @@ require_path 'rspec2/relative_path'
 require_path 'rspec2/formatter'
 require_path 'rspec2/example_sorter'
 require_path 'rspec2/example_group_sorter'
-require_path 'rspec2/ordered'
 
 module PriorityTest
   module RSpec2
