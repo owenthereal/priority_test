@@ -1,3 +1,6 @@
+require 'rspec/core'
+require 'priority_test/rspec2/patch/ordered'
+
 module PriorityTest
   module Runner
     def self.start

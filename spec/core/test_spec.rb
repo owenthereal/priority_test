@@ -58,6 +58,22 @@ module PriorityTest::Core
       end
     end
 
+    context "#<=>" do
+      it "compares by priority" do
+        test1 = Test.new(:identifier => "id1", :file_path => "path1", :priority => 1)
+        test2 = Test.new(:identifier => "id2", :file_path => "path2", :priority => 2)
+
+        (test1 < test2).should be_true
+      end
+
+      it "compares by avg_run_time" do
+        test1 = Test.new(:identifier => "id1", :file_path => "path1", :avg_run_time => 1)
+        test2 = Test.new(:identifier => "id2", :file_path => "path2", :priority => 2, :avg_run_time => 2)
+
+        (test1 < test2).should be_true
+      end
+    end
+
     describe ".all_in_priority_order" do
       it "returns all tests ordered by priority" do
         10.times.each do |i|

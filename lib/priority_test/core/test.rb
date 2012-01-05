@@ -2,13 +2,22 @@ module PriorityTest
   module Core
     class Test < ::Sequel::Model
       include PriorityTest::Core::ValidationsHelper
+      include Comparable
+
+      NUMBER_OF_RESULTS = 5
 
       one_to_many :results, :class => PriorityTest::Core::TestResult.name, :class => PriorityTest::Core::TestResult.name do |ds|
-        ds.order(:started_at.desc).limit(5) # make it configurable
+        ds.order(:started_at.desc).limit(NUMBER_OF_RESULTS) # make it configurable
       end
 
       def self.all_in_priority_order
-        self.eager(:results).order(:priority, :avg_run_time).all
+        eager(:results).order(:priority, :avg_run_time).all
+      end
+
+      def <=>(other)
+        result = (priority <=> other.priority)
+        result = (avg_run_time <=> other.avg_run_time) if result == 0 || !result
+        result
       end
 
       def validate
@@ -17,7 +26,7 @@ module PriorityTest
 
       def results_key
         results_key = results.collect { |r| r.passed? ? 'P' : 'F' }.join
-        results_key << 'P' * (5 - results_key.size) if results_key.size < 5
+        results_key << 'P' * (NUMBER_OF_RESULTS - results_key.size) if results_key.size < NUMBER_OF_RESULTS
         results_key[0..4]
       end
 
