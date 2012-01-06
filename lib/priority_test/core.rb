@@ -1,4 +1,5 @@
 require_path 'core/config'
+require_path 'core/runner'
 require_path 'core/priority'
 require_path 'core/validations_helper'
 require_path 'core/all_tests'
