@@ -1,4 +1,6 @@
-require_path 'core/config'
+require_path 'core/configuration'
+require_path 'core/configuration_options'
+require_path 'core/option_parser'
 require_path 'core/runner'
 require_path 'core/priority'
 require_path 'core/validations_helper'
@@ -14,8 +16,12 @@ module PriorityTest
     autoload :TestResult, 'priority_test/core/test_result'
   end
 
-  def self.config
-    @config ||= Core::Config.new
+  def self.configure
+    yield configuration if block_given?
+  end
+
+  def self.configuration
+    @configuration ||= Core::Configuration.new
   end
 
   def self.all_tests

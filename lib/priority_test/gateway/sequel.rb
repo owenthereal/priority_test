@@ -9,7 +9,7 @@ module PriorityTest
 
       def self.setup
         ::Sequel.database_timezone = :utc
-        @database ||= ::Sequel.connect(PriorityTest.config[:database])
+        @database ||= ::Sequel.connect(PriorityTest.configuration.database)
         run_migration(database)
       end
 

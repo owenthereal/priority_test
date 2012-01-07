@@ -19,11 +19,10 @@ require_path 'core'
 require_path 'gateway'
 require_path 'version'
 
-if PriorityTest.env =~ /test/i
-  PriorityTest.config[:database] = 'sqlite:/'
-else
-  PriorityTest.config[:database] = ENV['PRIORITY_TEST_DATABASE'] || 'sqlite://priority-test.db'
+PriorityTest.configure do |config|
+  if PriorityTest.env =~ /test/i
+    config.database = 'sqlite:/'
+  end
 end
 
 PriorityTest::Gateway.setup
-
