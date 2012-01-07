@@ -1,4 +1,5 @@
 require 'sequel'
+require 'sequel/extensions/migration'
 
 module PriorityTest
   module Gateway
@@ -19,31 +20,14 @@ module PriorityTest
       end
 
       def self.run_migration(database)
-        database.create_table? :tests do
-          primary_key :id
-          String :identifier, :text => true, :null => false
-          String :file_path, :text => true, :null => false
-          Integer :priority, :default => 0, :null => false
-          Numeric :avg_run_time, :size => [10, 6], :default => 0, :null => false
-        end
-
-        database.create_table? :test_results do
-          primary_key :id
-          String :status, :null => false
-          DateTime :started_at, :null => false
-          Numeric :run_time, :size => [10, 6], :null => false
-          foreign_key :test_id, :tests
-          index :test_id
-        end
+        ::Sequel::Migrator.apply(database, migrations_dir)
       end
 
-      # def bulk_create_test_results(test_results)
-      #   dataset.multi_insert(test_results.collect(&:to_hash))
-      # end
+      private
 
-      # def dataset
-      #   database[:test_results]
-      # end
+      def self.migrations_dir
+        File.join(File.expand_path(File.dirname(__FILE__)), 'migrations')
+      end
     end
   end
 end
