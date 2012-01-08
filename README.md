@@ -25,7 +25,7 @@ Two factors determines a test's DoS: test run time and recent failure times.
 
 ## RubyGems
 
-    gem install priority_test
+    [sudo] gem install priority_test
 
 ## RSpec
 
