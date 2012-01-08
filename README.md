@@ -24,7 +24,9 @@ Two factors determines the degree of significant for a test: test run times and 
 
 # INSTALLATION
 
-    gem install priority_test
+```bash
+gem install priority_test
+```
 
 ## RSpec
 
@@ -51,17 +53,20 @@ Options:
     -v, --version                    Show version
 ```
 
-Runn tests in priority order:
+Run tests in priority order:
+
 ```bash
 $ pt rspec spec/a_spec
 ```
 
 Filter and run only priority tests:
+
 ```bash
 $ pt rspec spec/a_spec --priority
 ```
 
 Passing arguments to RSpec:
+
 ```bash
 $ pt rspec spec/a_spec --priority -fp
 ```
