@@ -17,7 +17,7 @@ algorithm and prioritizes your tests by looking at the test running history.
 # ALGORITHM
 
 PriorityTest captures and stores your test running hisotry.
-Before each test runs, it looks back X number of the previous test results to calculate the test's Degree of Significant (DoS)
+Before each test runs, it looks back X number of the previous test results to calculate the test's Degree of Significant (DoS).
 It then prioritizes the run order of all the tests based on their DoS.
 Two factors determines a test's DoS: test run time and recent failure times.
 
