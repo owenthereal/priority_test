@@ -17,11 +17,13 @@ algorithm and prioritizes your tests by looking at the test running history.
 # ALGORITHM
 
 PriorityTest captures and stores your test running hisotry.
-Before each test runs, it looks back X number of the previous test results of to calculate the test's degree of significant.
-It then prioritizes the run order of all the tests based on this degree of significant.
-Two factors determines a test's degree of significant: test run time and recent failure times.
+Before each test runs, it looks back X number of the previous test results to calculate the test's Degree of Significant (DoS)
+It then prioritizes the run order of all the tests based on their DoS.
+Two factors determines a test's DoS: test run time and recent failure times.
 
 # INSTALLATION
+
+## RubyGems
 
 ```bash
 gem install priority_test
@@ -29,7 +31,13 @@ gem install priority_test
 
 ## RSpec
 
-In spec_helper.rb, insert the following line:
+In your Gemfile, insert the following line:
+
+```ruby
+gem 'priority_test'
+```
+
+In ```spec_helper.rb```, require PriorityTest RSpec adapter:
 
 ```ruby
 require 'priority_test/rspec'
