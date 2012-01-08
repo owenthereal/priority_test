@@ -1,7 +1,7 @@
 PriorityTest
 ============
 
-# DESCRIPTION
+## DESCRIPTION
 
 PriorityTest is a gem that delivers fast feedback for your tests by
 prioritizing them.
@@ -14,20 +14,20 @@ It prioritizes tests based on two assumptions discovered by [Kent Beck](https://
 PriorityTest inherits from these two assumptions with a simple
 algorithm and prioritizes your tests by looking at the test running history.
 
-# ALGORITHM
+## ALGORITHM
 
 PriorityTest captures and stores your test running hisotry.
 Before each test runs, it looks back X number of the previous test results to calculate the test's Degree of Significant (DoS).
 It then prioritizes the running order of all the tests based on each test's DoS.
 Two factors determines a test's DoS: test run time and recent failure times.
 
-# INSTALLATION
+## INSTALLATION
 
-## RubyGems
+### RubyGems
 
     [sudo] gem install priority_test
 
-## RSpec
+### RSpec
 
 In your ```Gemfile```, insert the following line:
 
@@ -41,7 +41,7 @@ In ```spec_helper.rb```, require the RSpec adapter:
 require 'priority_test/rspec'
 ```
 
-# USAGE
+## USAGE
 
 Getting help:
 
@@ -72,6 +72,6 @@ Run tests in a Rake task:
 
     $ rake spec PT_OPTS="--priority"
 
-# LICENSE
+## LICENSE
 
 See LICENSE
