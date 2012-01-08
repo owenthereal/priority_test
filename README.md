@@ -74,4 +74,4 @@ Run tests in a Rake task:
 
 ## LICENSE
 
-See LICENSE
+See LICENSE.
