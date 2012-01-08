@@ -60,7 +60,7 @@ Run tests in priority order:
 
     $ pt rspec spec/a_spec
 
-Filter and run only priority tests:
+Filter and run priority tests:
 
     $ pt rspec spec/a_spec --priority
 
