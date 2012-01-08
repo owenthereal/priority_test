@@ -15,10 +15,14 @@ module PriorityTest
       end
 
       def parse_options(args)
-        return {} if args.empty?
-
         options = {}
         opts_parser = parser(options)
+
+        if args.empty?
+          puts opts_parser
+          return options
+        end
+
         begin
           opts_parser.parse!(args.clone)
         rescue ::OptionParser::InvalidOption
@@ -30,9 +34,9 @@ module PriorityTest
       end
 
       def parse!(args)
-        return {} if args.empty?
-
         options = parse_options(args)
+        return options if options.empty?
+
         options[:test_framework] = parse_test_framework(args)
 
         options
