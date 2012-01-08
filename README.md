@@ -71,3 +71,7 @@ Directly passing arguments to RSpec:
 Run tests in a Rake task:
 
     $ rake spec PT_OPTS="--priority"
+
+# LICENSE
+
+See LICENSE

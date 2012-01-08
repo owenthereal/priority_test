@@ -5,7 +5,7 @@ require 'priority_test/version'
 Gem::Specification.new do |s|
   s.name        = "priority_test"
   s.version     = PriorityTest::VERSION
-  s.authors     = ["Owen Ou"]
+  s.authors     = ["Jingwen Owen Ou"]
   s.email       = ["jingweno@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Run tests in priority}
