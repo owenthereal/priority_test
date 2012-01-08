@@ -2,4 +2,4 @@
 .bundle
 Gemfile.lock
 pkg/*
-priority-test.db
+.priority-test.db

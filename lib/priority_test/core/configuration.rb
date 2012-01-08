@@ -8,7 +8,7 @@ module PriorityTest
       end
 
       add_setting :test_framework
-      add_setting :database, :default => 'sqlite://priority-test.db'
+      add_setting :database, :default => "sqlite://#{File.join(File.expand_path('.'), '.priority-test.db')}"
       add_setting :priority, :default => false
 
       def settings
