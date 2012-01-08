@@ -29,13 +29,13 @@ Two factors determines a test's DoS: test run time and recent failure times.
 
 ## RSpec
 
-In your Gemfile, insert the following line:
+In your ```Gemfile```, insert the following line:
 
 ```ruby
 gem 'priority_test'
 ```
 
-In ```spec_helper.rb```, require PriorityTest RSpec adapter:
+In ```spec_helper.rb```, require the RSpec adapter:
 
 ```ruby
 require 'priority_test/rspec'
