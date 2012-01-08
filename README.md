@@ -25,9 +25,7 @@ Two factors determines a test's DoS: test run time and recent failure times.
 
 ## RubyGems
 
-```bash
-gem install priority_test
-```
+    gem install priority_test
 
 ## RSpec
 
@@ -47,39 +45,29 @@ require 'priority_test/rspec'
 
 Getting help:
 
-```bash
-$ pt -h
-Usage: pt <test-framework> [options] [files or directories]
+    $ pt -h
+    Usage: pt <test-framework> [options] [files or directories]
 
-Test framework:
-  * rspec
+    Test framework:
+      * rspec
 
-Options:
-        --priority                   Filter and run priority tests
-    -h, --help                       Show help
-    -v, --version                    Show version
-```
+    Options:
+            --priority                   Filter and run priority tests
+        -h, --help                       Show help
+        -v, --version                    Show version
 
 Run tests in priority order:
 
-```bash
-$ pt rspec spec/a_spec
-```
+    $ pt rspec spec/a_spec
 
 Filter and run only priority tests:
 
-```bash
-$ pt rspec spec/a_spec --priority
-```
+    $ pt rspec spec/a_spec --priority
 
 Passing arguments to RSpec:
 
-```bash
-$ pt rspec spec/a_spec --priority -fp
-```
+    $ pt rspec spec/a_spec --priority -fp
 
 Run tests in a Rake task:
 
-```bash
-rake spec PT_OPTS="--priority"
-```
+    rake spec PT_OPTS="--priority"
