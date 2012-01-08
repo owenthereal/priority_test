@@ -64,7 +64,7 @@ Filter and run only priority tests:
 
     $ pt rspec spec/a_spec --priority
 
-Passing arguments to RSpec:
+Directly passing arguments to RSpec:
 
     $ pt rspec spec/a_spec --priority -fp
 
