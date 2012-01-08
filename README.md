@@ -3,7 +3,7 @@ PriorityTest
 
 # DESCRIPTION
 
-PriorityTest is gem that delivers fast feedback for your tests by
+PriorityTest is a gem that delivers fast feedback for your tests by
 prioritizing them.
 It prioritizes tests based on two assumptions discovered by [Kent Beck](https://twitter.com/#!/kentbeck) in his tool [JUnit Max](http://junitmax.com/):
 
@@ -11,16 +11,15 @@ It prioritizes tests based on two assumptions discovered by [Kent Beck](https://
 
 > Failures are not randomly distributed. A test that failed recently is more likely to fail than one that has run correctly a bazillion times in a row. By putting recently failed (and newly written) tests first in the queue, you maximize the information density of that critical first second of feedback.
 
-PriorityTest inherits from these two assumptions and implements a simple
-algorithm by looking at your test running history.
+PriorityTest inherits from these two assumptions with a simple
+algorithm and prioritizes your tests by looking at the test running history.
 
 # ALGORITHM
 
-First of all, PriorityTest captures and stores your test running
-hisotry.
-Before each test runs, it looks back X number of the previous test results and determites whether the test is significant.
-It then prioritizes the test run order based on this significant.
-Two factors determines the degree of significant for a test: test run times and recent failure times.
+PriorityTest captures and stores your test running hisotry.
+Before each test runs, it looks back X number of the previous test results of to calculate the test's degree of significant.
+It then prioritizes the run order of all the tests based on this degree of significant.
+Two factors determines a test's degree of significant: test run time and recent failure times.
 
 # INSTALLATION
 
@@ -69,4 +68,10 @@ Passing arguments to RSpec:
 
 ```bash
 $ pt rspec spec/a_spec --priority -fp
+```
+
+Run tests in a Rake task:
+
+```bash
+rake spec PT_OPTS="--priority"
 ```
