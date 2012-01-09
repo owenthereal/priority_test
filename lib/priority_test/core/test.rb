@@ -15,8 +15,8 @@ module PriorityTest
       end
 
       def <=>(other)
-        result = (priority <=> other.priority)
-        result = (avg_run_time <=> other.avg_run_time) if result == 0 || !result
+        result = (priority <=> other.priority) if priority && other.priority
+        result = (avg_run_time <=> other.avg_run_time) if (result == 0 || !result) && avg_run_time && other.avg_run_time
         result
       end
 
