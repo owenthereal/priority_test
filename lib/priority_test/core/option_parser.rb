@@ -10,10 +10,6 @@ module PriorityTest
         new.parse!(args)
       end
 
-      def self.parse_options(args)
-        new.parse_options(args)
-      end
-
       def parse_options(args)
         options = {}
         opts_parser = parser(options)
@@ -35,8 +31,6 @@ module PriorityTest
 
       def parse!(args)
         options = parse_options(args)
-        return options if options.empty?
-
         options[:test_framework] = parse_test_framework(args)
 
         options
