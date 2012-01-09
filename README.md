@@ -1,6 +1,8 @@
 PriorityTest
 ============
 
+[![Build Status](https://secure.travis-ci.org/jingweno/priority_test.png)](http://travis-ci.org/jingweno/priority_test)
+
 ## DESCRIPTION
 
 PriorityTest is a gem that delivers fast feedback for your tests by
