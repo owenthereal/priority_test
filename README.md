@@ -2,6 +2,7 @@ PriorityTest
 ============
 
 [![Build Status](https://secure.travis-ci.org/jingweno/priority_test.png)](http://travis-ci.org/jingweno/priority_test)
+[![Dependency Status](https://gemnasium.com/jingweno/priority_test.png)](https://gemnasium.com/jingweno/priority_test)
 
 ## DESCRIPTION
 
