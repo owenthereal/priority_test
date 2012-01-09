@@ -14,8 +14,10 @@ module PriorityTest
           1
         elsif !test.nil? && other.test.nil?
           -1
-        else
+        elsif test && other.test
           test <=> other.test
+        else
+          0
         end
       end
     end

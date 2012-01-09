@@ -3,8 +3,10 @@ require_path 'rspec2'
 require_path 'rspec2/patch/world'
 require_path 'rspec2/patch/example_group'
 
-config_options = PriorityTest::Core::ConfigurationOptions.new(['rspec'] + ENV['PT_OPTS'].split)
-config_options.configure(PriorityTest.configuration)
+if ENV['PT_OPTS']
+  config_options = PriorityTest::Core::ConfigurationOptions.new(['rspec'] + ENV['PT_OPTS'].split)
+  config_options.configure(PriorityTest.configuration)
+end
 
 RSpec.configure do |config|
   config.formatters << PriorityTest::RSpec2.formatter
