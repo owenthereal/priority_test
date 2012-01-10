@@ -35,7 +35,7 @@ module PriorityTest::Core
 
       instance = subject.new
       instance.first_name = ""
-      instance.should_not be_valid
+      instance.should be_invalid
       instance.errors.should include(:first_name)
     end
   end
