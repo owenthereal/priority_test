@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = PriorityTest::VERSION
   s.authors     = ["Jingwen Owen Ou"]
   s.email       = ["jingweno@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/jingweno/priority_test"
   s.summary     = %q{Run tests in priority}
   s.description = %q{Run tests in priority}
 
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  s.add_runtime_dependency "activemodel"
   s.add_runtime_dependency "sequel"
   s.add_runtime_dependency "sqlite3"
 
