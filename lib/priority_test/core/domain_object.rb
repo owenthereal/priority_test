@@ -22,8 +22,10 @@ module PriorityTest
           attribute(name, type, options)
 
           define_method("#{name}=") do |val|
-            send("#{name}_will_change!") unless val == send(name)
-            super(val)
+            pre_val = send(name)
+            new_val = super(val)
+            send("#{name}_will_change!") unless new_val == pre_val
+            new_val
           end
 
           define_attribute_method name
