@@ -1,3 +1,4 @@
+require 'virtus'
 require 'active_model'
 
 module PriorityTest
@@ -6,9 +7,9 @@ module PriorityTest
       def self.included(context)
         super
 
-        context.send(:include, InstanceMethods)
         context.extend(ClassMethods)
 
+        context.send(:include, ::Virtus)
         context.send(:include, ::ActiveModel::AttributeMethods)
         context.send(:include, ::ActiveModel::Dirty)
         context.send(:include, ::ActiveModel::Validations)
@@ -16,23 +17,13 @@ module PriorityTest
 
       private_class_method :included
 
-      module InstanceMethods
-        attr_reader :attributes
-
-        def initialize(attributes = {})
-          @attributes = attributes
-        end
-      end
-
       module ClassMethods
-        def property(name)
-          define_method(name) do
-            attributes[name]
-          end
+        def property(name, type, options = {})
+          attribute(name, type, options)
 
           define_method("#{name}=") do |val|
             send("#{name}_will_change!") unless val == send(name)
-            attributes[name] = val
+            super(val)
           end
 
           define_attribute_method name

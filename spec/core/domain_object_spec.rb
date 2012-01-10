@@ -6,10 +6,17 @@ module PriorityTest::Core
       Class.new do
         include DomainObject
       end
-    end 
+    end
+
+    it "coerces property type" do
+      subject.property :count, Integer
+      instance = subject.new(:count => '1')
+      instance.count.should be_kind_of(Integer)
+      instance.count.should == 1
+    end
 
     it "tracks dirty properties" do
-      subject.property :name
+      subject.property :name, String
       instance = subject.new
       instance.name.should be_nil
       instance.should_not be_changed
@@ -21,7 +28,7 @@ module PriorityTest::Core
     end
 
     it "validates properties" do
-      subject.property :first_name
+      subject.property :first_name, String
       subject.validates_each :first_name do |model, attr, val|
         model.errors.add attr, 'cannot be empty' if val.empty?
       end
