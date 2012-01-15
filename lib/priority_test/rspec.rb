@@ -1,7 +1,7 @@
 require 'rspec/core'
-require_path 'rspec2'
-require_path 'rspec2/patch/world'
-require_path 'rspec2/patch/example_group'
+require_pt 'rspec2'
+require_pt 'rspec2/patch/world'
+require_pt 'rspec2/patch/example_group'
 
 if ENV['PT_OPTS']
   config_options = PriorityTest::Core::ConfigurationOptions.new(['rspec'] + ENV['PT_OPTS'].split)

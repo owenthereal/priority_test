@@ -1,9 +1,9 @@
 if defined?(require_relative)
-  def require_path(path)
+  def require_pt(path)
     require_relative "priority_test/#{path}"
   end
 else
-  def require_path(path)
+  def require_pt(path)
     require "priority_test/#{path}"
   end
 end
@@ -15,9 +15,9 @@ module PriorityTest
   self.env = ENV['PRIORITY_TEST_ENV'] || 'production'
 end
 
-require_path 'core'
-require_path 'gateway'
-require_path 'version'
+require_pt 'core'
+require_pt 'gateway'
+require_pt 'version'
 
 PriorityTest.configure do |config|
   if PriorityTest.env =~ /test/i

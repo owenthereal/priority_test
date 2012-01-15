@@ -1,8 +1,8 @@
 require 'rspec/core'
-require_path 'rspec2/relative_path'
-require_path 'rspec2/formatter'
-require_path 'rspec2/example_sorter'
-require_path 'rspec2/example_group_sorter'
+require_pt 'rspec2/relative_path'
+require_pt 'rspec2/formatter'
+require_pt 'rspec2/example_sorter'
+require_pt 'rspec2/example_group_sorter'
 
 module PriorityTest
   module RSpec2

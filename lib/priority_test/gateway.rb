@@ -1,4 +1,4 @@
-require_path 'gateway/sequel'
+require_pt 'gateway/sequel'
 
 module PriorityTest
   module Gateway
