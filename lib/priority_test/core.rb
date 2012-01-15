@@ -1,15 +1,3 @@
-require_pt 'core/configuration'
-require_pt 'core/configuration_options'
-require_pt 'core/option_parser'
-require_pt 'core/runner'
-require_pt 'core/priority'
-require_pt 'core/domain_object'
-require_pt 'core/validations_helper'
-require_pt 'core/all_tests'
-require_pt 'core/service'
-require_pt 'core/test_result_collector'
-require_pt 'core/priority_sort_element'
-
 module PriorityTest
   module Core
     # Remove dependency of Sequel so that it can move out of autoload

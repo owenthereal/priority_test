@@ -1,5 +1,3 @@
-require_pt 'gateway/sequel'
-
 module PriorityTest
   module Gateway
     def self.setup

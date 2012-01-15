@@ -1,4 +1,5 @@
 require 'rspec/core'
+
 require_pt 'rspec2'
 require_pt 'rspec2/patch/world'
 require_pt 'rspec2/patch/example_group'

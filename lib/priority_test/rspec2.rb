@@ -1,4 +1,5 @@
 require 'rspec/core'
+
 require_pt 'rspec2/relative_path'
 require_pt 'rspec2/formatter'
 require_pt 'rspec2/example_sorter'
