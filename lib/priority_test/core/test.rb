@@ -1,14 +1,21 @@
 module PriorityTest
   module Core
-    class Test < ::Sequel::Model
+    class Test
+      include DataMapper::Resource
+      property :id,    Serial
+      property :identifier, Text, :lazy => false, :allow_nil => false
+      property :file_path, Text, :lazy => false, :allow_nil => false
+      property :priority, Integer, :default => 0, :allow_nil => false
+      property :avg_run_time, Decimal, :default => 0, :scale => 2, :allow_nil => false
+
       include PriorityTest::Core::ValidationsHelper
       include Comparable
 
       NUMBER_OF_RESULTS = 5
 
-      one_to_many :results, :class => PriorityTest::Core::TestResult.name, :class => PriorityTest::Core::TestResult.name do |ds|
-        ds.order(:started_at.desc).limit(NUMBER_OF_RESULTS) # make it configurable
-      end
+      #one_to_many :results, :class => PriorityTest::Core::TestResult.name, :class => PriorityTest::Core::TestResult.name do |ds|
+        #ds.order(:started_at.desc).limit(NUMBER_OF_RESULTS) # make it configurable
+      #end
 
       def self.all_in_priority_order
         eager(:results).order(:priority, :avg_run_time).all

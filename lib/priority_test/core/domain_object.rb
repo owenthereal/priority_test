@@ -1,5 +1,5 @@
-require 'virtus'
-require 'active_model'
+#require 'virtus'
+#require 'active_model'
 
 module PriorityTest
   module Core

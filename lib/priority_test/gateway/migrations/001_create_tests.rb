@@ -1,3 +1,19 @@
+migration 1, :create_people_table do
+  up do
+    create_table :tests do
+      column :id,   Integer, :serial => true
+      column :identifier, Text, :allow_nil => false
+      column :file_path, Text, :allow_nil => false
+      column :priority, Integer, :allow_nil => false, :default => 0
+      column :avg_run_time, Decimal
+    end
+  end
+
+  down do
+    drop_table :people
+  end
+end
+
 Sequel.migration do
   change do
     create_table(:tests) do
