@@ -1,27 +1,21 @@
 module PriorityTest
   module Core
-    class Test < ::Sequel::Model
-      include PriorityTest::Core::ValidationsHelper
-      include Comparable
+    class Test
+      attr_reader :identifier, :results
 
-      NUMBER_OF_RESULTS = 5
-
-      one_to_many :results, :class => PriorityTest::Core::TestResult.name, :class => PriorityTest::Core::TestResult.name do |ds|
-        ds.order(:started_at.desc).limit(NUMBER_OF_RESULTS) # make it configurable
+      def initialize(attributes = {})
+        @identifier = attributes[:identifier]
+        @results = []
       end
 
-      def self.all_in_priority_order
-        eager(:results).order(:priority, :avg_run_time).all
+      def add_result(result_attributes)
+        results << TestResult.new(result_attributes)
       end
 
       def <=>(other)
         result = (priority <=> other.priority) if priority && other.priority
         result = (avg_run_time <=> other.avg_run_time) if (result == 0 || !result) && avg_run_time && other.avg_run_time
         result || 0
-      end
-
-      def validate
-        validates_presence [ :identifier, :file_path ]
       end
 
       def results_key

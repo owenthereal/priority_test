@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Gateway::Database do
+describe PriorityTest::Gateway::Database do
   before do
     @db = PriorityTest::Gateway::Sequel.database
-    @gateway = Gateway::Database.new(@db)
+    @gateway = PriorityTest::Gateway::Database.new(@db)
     @gateway.setup
   end
 
@@ -17,13 +17,13 @@ describe Gateway::Database do
       tests = @gateway.load_tests
 
       tests.size.should == 1
-      tests.each do |id, results|
-        results.size.should == 5
+      tests.each do |test|
+        test.results.size.should == 5
 
         (1..4).each do |i|
-          previous_result = results[i - 1]
-          current_result = results[i]
-          previous_result[:started_at].should > current_result[:started_at]
+          previous_result = test.results[i - 1]
+          current_result = test.results[i]
+          previous_result.started_at.should > current_result.started_at
         end
       end
     end

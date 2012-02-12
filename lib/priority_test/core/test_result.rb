@@ -1,12 +1,18 @@
 module PriorityTest
   module Core
-    class TestResult < ::Sequel::Model
-      include PriorityTest::Core::ValidationsHelper
-
+    class TestResult
       PASSED_STATUS = 'passed'
       FAILEDED_STATUS = 'failed'
 
-      many_to_one :context, :class => PriorityTest::Core::Test.name, :key => :test_id
+      attr_reader :identifier, :file_path, :status, :started_at, :run_time
+
+      def initialize(attributes = {})
+        @identifier = attributes[:identifier]
+        @file_path = attributes[:file_path]
+        @status = attributes[:status]
+        @started_at = attributes[:started_at]
+        @run_time = attributes[:run_time]
+      end
 
       def passed?
         status == PASSED_STATUS
@@ -14,11 +20,6 @@ module PriorityTest
 
       def failed?
         not passed?
-      end
-
-      def validate
-        validates_presence [ :status, :started_at, :run_time ]
-        validates_includes [ PASSED_STATUS, FAILEDED_STATUS ], :status
       end
     end
   end
