@@ -11,7 +11,7 @@ describe PriorityTest::Gateway::Database do
     it "loads tests with recent x number of results" do
       10.times.each do |i|
         time = Time.mktime(1984, 10, 28, 0, i, 0)
-        @gateway.add_test(:identifier => "id1", :file_path => "file1", :status => "passed", :run_time => 1, :started_at => time)
+        @gateway.add_test_result(:identifier => "id1", :file_path => "file1", :status => "passed", :run_time => 1, :started_at => time)
       end
 
       tests = @gateway.load_tests

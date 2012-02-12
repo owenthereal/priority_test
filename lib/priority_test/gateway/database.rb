@@ -20,7 +20,7 @@ module PriorityTest
         end
       end
 
-      def add_test(attributes = {})
+      def add_test_result(attributes = {})
         @table << attributes
       end
 
